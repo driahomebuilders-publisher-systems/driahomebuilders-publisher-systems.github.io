@@ -42,3 +42,12 @@ The absolute authenticated channel for accessing secure database repositories an
 COMMERCIAL ENQUIRIES: Submit the corporate enquiry form via the gated repository landing page to request formal follow-up regarding configuration scope, data delivery protocols, and indicative procurement schedules.
 
 Copyright © 2026 DRIA Home Builders (Pty) Ltd. All rights reserved in original independently engineered data infrastructure material, subject to authoritative third-party rights. Deployed natively via Sage Corporate Ledger Root Space.
+
+#### 8. REPOSITORY SHELL BUILD CONTROL
+The Appliances repository is the reference pattern for the next category-family repositories. The shell standard and source audit register are maintained in this repository:
+
+- [DRIA Repository Shell Standard](DRIA_REPOSITORY_SHELL_STANDARD.md)
+- [DRIA Item Category Repository Build Register](DRIA_ITEM_CATEGORY_BUILD_REGISTER.md)
+- [DRIA Appliances BOM reference repository](https://github.com/driahomebuilders-publisher-systems/DRIA_Appliances_BOM)
+
+The source register contains 837 distinct description rows, each with a stated value of $45,000 USD. The $37,665,000 USD arithmetic total is a row-value calculation only; it is not a representation of realized revenue or independently assessed market value. Category grouping and repository boundaries remain provisional until reviewed. Gateway buttons must never point to files or repositories that do not exist.
