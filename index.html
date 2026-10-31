@@ -3,59 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DRIA 4IR Infrastructure Systems Terminal</title>
+    <meta name="description" content="DRIA 4IR Infrastructure Systems: independently developed technical data assets and enterprise infrastructure for construction and built-environment procurement.">
+    <meta name="theme-color" content="#0b1220">
+    <title>DRIA | 4IR Infrastructure Systems</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #0d1117; color: #c9d1d9; margin: 0; padding: 40px 20px; line-height: 1.6; }
-        .container { max-width: 800px; margin: 0 auto; background: #161b22; border: 1px solid #30363d; border-radius: 6px; padding: 30px; }
-        h1 { color: #f0f6fc; border-bottom: 1px solid #21262d; padding-bottom: 10px; margin-top: 0; font-size: 24px; }
-        h2 { color: #58a6ff; font-size: 18px; margin-top: 20px; }
-        .notice-box { background: rgba(56, 139, 253, 0.1); border: 1px solid #388bfd; border-radius: 6px; padding: 15px; margin: 20px 0; }
-        .notice-title { color: #58a6ff; font-weight: bold; margin-bottom: 5px; }
-        .vault-row { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 20px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-        .vault-info h3 { margin: 0 0 5px 0; color: #f0f6fc; font-size: 16px; }
-        .vault-info p { margin: 0; color: #8b949e; font-size: 13px; }
-        .btn-green { background-color: #238636; color: #ffffff; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 14px; transition: background-color 0.2s; display: inline-block; white-space: nowrap; }
-        .btn-green:hover { background-color: #2ea043; }
-        .access-note { color: #8b949e; font-size: 13px; font-weight: 600; }
+        :root {
+            color-scheme: dark;
+            --page: #0b1220;
+            --surface: #121d2d;
+            --surface-2: #172438;
+            --border: #2b3b50;
+            --text: #edf3fa;
+            --muted: #a9b8c9;
+            --accent: #7bb7f0;
+            --accent-strong: #2d78bd;
+            --notice: #1b2b40;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 40px 20px 56px;
+            background: var(--page);
+            color: var(--text);
+            font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.65;
+        }
+        .container { width: min(100%, 1040px); margin: 0 auto; }
+        .hero { padding: 12px 0 28px; }
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+        h1 { margin: 0; font-size: clamp(30px, 5vw, 44px); line-height: 1.12; letter-spacing: -.025em; }
+        .lead { max-width: 780px; margin: 18px 0 8px; color: var(--muted); font-size: 17px; }
+        .scope { margin: 10px 0 0; color: #8195ac; font-size: 13px; }
+        .notice {
+            margin: 22px 0 38px;
+            padding: 20px 22px;
+            background: var(--notice);
+            border: 1px solid #385779;
+            border-left: 4px solid var(--accent-strong);
+            border-radius: 10px;
+        }
+        .notice h2 { margin: 0 0 8px; color: var(--text); font-size: 16px; }
+        .notice p { margin: 0; color: var(--muted); font-size: 14px; }
+        section { margin-top: 34px; }
+        .section-title { margin: 0 0 8px; font-size: 21px; }
+        .section-intro { max-width: 820px; margin: 0 0 20px; color: var(--muted); font-size: 14px; }
+        .asset-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr)); gap: 16px; }
+        .asset-card {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 13px;
+            padding: 22px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+        .asset-label { margin: 0; color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+        .asset-card h3 { margin: 0; font-size: 17px; line-height: 1.35; }
+        .asset-card p { margin: 0; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+        .reference { color: #8da4bd !important; font-size: 12px !important; }
+        .status { margin-top: auto; padding-top: 4px; color: #c4d3e3; font-size: 13px; font-weight: 600; }
+        .button {
+            display: inline-block;
+            margin-top: 2px;
+            padding: 10px 15px;
+            border: 1px solid #4a91cb;
+            border-radius: 7px;
+            background: #1d5f97;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .button:hover, .button:focus { background: #2676b8; }
+        .reconciliation {
+            padding: 22px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+        .reconciliation ul { margin: 12px 0; padding-left: 20px; color: var(--muted); }
+        .reconciliation p { margin: 10px 0 0; color: var(--muted); font-size: 14px; }
+        .access-panel {
+            padding: 20px 22px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+        .access-panel p { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+        footer {
+            margin-top: 44px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: #8497ad;
+            font-size: 12px;
+        }
+        footer p { margin: 6px 0; }
+        a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+        @media (max-width: 600px) {
+            body { padding: 26px 14px 40px; }
+            .notice, .asset-card, .reconciliation, .access-panel { padding: 17px; }
+            .lead { font-size: 15px; }
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <h1>DRIA 4IR INFRASTRUCTURE SYSTEMS</h1>
-    <p>Global Operational Asset Routing Domain for DRIA Systems Enterprise Directory. NAICS 23 Architectural &amp; Engineering Infrastructure Gated Repository Grid.</p>
-    <div class="notice-box">
-        <div class="notice-title">🛡️ GLOBAL ENTERPRISE OPERATIONAL ASSET &amp; LICENSING AGREEMENT</div>
-        <p style="margin: 0; font-size: 14px; color: #8b949e;">Authorized Usage Context: Strictly licensed for corporate enterprise deployment within NAICS 23 (Construction &amp; Infrastructure). Unauthorized web scraping or public redistribution triggers immediate systemic license revocation.</p>
-    </div>
-    <h2>Active CSI MasterFormat System Service Vault Matrix</h2>
-    <div class="vault-row">
-        <div class="vault-info">
-            <h3>Volume 1: Superstructure Ingestion Framework (Divisions 05, 06, 09)</h3>
-            <p>Status: COMMERCIAL ACCESS | Verification Framework Code: MasterFormat-Silo-A-Superstructure</p>
+<main class="container">
+    <header class="hero">
+        <p class="eyebrow">DRIA Home Builders (Pty) Ltd</p>
+        <h1>4IR Infrastructure Systems</h1>
+        <p class="lead">Independently developed digital infrastructure, structured technical data assets and enterprise information systems for construction, engineering and built-environment procurement.</p>
+        <p class="scope">Primary market focus: U.S. construction and built-environment procurement (NAICS 23).</p>
+    </header>
+
+    <section class="notice" aria-labelledby="disclosure-title">
+        <h2 id="disclosure-title">Corporate product evaluation and commercial enquiry notice</h2>
+        <p>This portfolio is provided for controlled corporate evaluation. Third-party standards, data, specifications and trademarks remain subject to their respective owners' rights; references do not imply endorsement, certification or affiliation. Viewing or downloading evaluation material does not grant a licence or transfer ownership. Commercial scope, permitted use, fees, delivery obligations and support terms require a separate written agreement signed by the parties.</p>
+    </section>
+
+    <section aria-labelledby="portfolio-title">
+        <h2 class="section-title" id="portfolio-title">Current evaluation portfolio</h2>
+        <p class="section-intro">The catalogue below identifies the current portfolio volumes and their evaluation status. Technical compatibility and production readiness must be assessed against the recipient's actual environment and acceptance criteria.</p>
+
+        <div class="asset-grid">
+            <article class="asset-card">
+                <p class="asset-label">Volume 1 · MasterFormat</p>
+                <h3>Superstructure Ingestion Framework</h3>
+                <p>Classification scope: Divisions 05, 06 and 09.</p>
+                <p class="reference">Reference code: MasterFormat-Silo-A-Superstructure</p>
+                <p class="status">Commercial evaluation by request</p>
+            </article>
+
+            <article class="asset-card">
+                <p class="asset-label">Volume 2 · MasterFormat</p>
+                <h3>Dynamic Mechanical Utility Framework</h3>
+                <p>Classification scope: Divisions 07, 22 and 23.</p>
+                <p class="reference">Reference code: MasterFormat-Silo-B-Mechanical</p>
+                <p class="status">Commercial evaluation by request</p>
+            </article>
+
+            <article class="asset-card">
+                <p class="asset-label">Volume 3 · Technical data asset</p>
+                <h3>Unified Adhesives System</h3>
+                <p>A free evaluation matrix is available for initial corporate assessment.</p>
+                <p class="reference">Reference code: DRIA-Unified-Adhesives-System</p>
+                <a href="./QUO0000002_83253%20Adhesives_External_Matrix.pdf" target="_blank" rel="noopener noreferrer" class="button">Open free evaluation matrix (PDF)</a>
+            </article>
+
+            <article class="asset-card">
+                <p class="asset-label">Volume 4 · Bill of Materials</p>
+                <h3>DRIA Appliances Bill of Materials Infrastructure</h3>
+                <p>Commercial evaluation is subject to asset qualification and controlled document delivery.</p>
+                <p class="reference">Reference code: DRIA-Appliances-BOM</p>
+                <p class="status">Commercial evaluation by request</p>
+            </article>
         </div>
-        <span class="access-note">Commercial access by request</span>
-    </div>
-    <div class="vault-row">
-        <div class="vault-info">
-            <h3>Volume 2: Dynamic Mechanical Utility Framework (Divisions 07, 22, 23)</h3>
-            <p>Status: COMMERCIAL ACCESS | Verification Framework Code: MasterFormat-Silo-B-Mechanical</p>
+    </section>
+
+    <section aria-labelledby="additional-title">
+        <div class="reconciliation">
+            <h2 class="section-title" id="additional-title">Additional category assets</h2>
+            <p class="section-intro">The following categories are undergoing internal document and technical reconciliation. They are not currently available for external evaluation or download through this site.</p>
+            <ul>
+                <li>Bolt &amp; Nut infrastructure series</li>
+                <li>Bathroom systems</li>
+                <li>Brushware systems</li>
+                <li>Building systems</li>
+            </ul>
         </div>
-        <span class="access-note">Commercial access by request</span>
-    </div>
-    <div class="vault-row">
-        <div class="vault-info">
-            <h3>Volume 3: Unified Adhesives System</h3>
-            <p>Status: FREE EVALUATION MATRIX | Verification Framework Code: DRIA-Unified-Adhesives-System</p>
+    </section>
+
+    <section aria-labelledby="access-title">
+        <div class="access-panel">
+            <h2 class="section-title" id="access-title">Customer access and procurement</h2>
+            <p>Commercial access, technical evaluation and licensing are subject to qualification, rights verification, scope confirmation and the applicable written agreement. A controlled customer-access gateway is being implemented. Until it is operational, this site does not accept or process access requests for restricted assets.</p>
+            <p>For current commercial enquiries, use your established DRIA contact channel.</p>
         </div>
-        <a href="./QUO0000002_83253%20Adhesives_External_Matrix.pdf" target="_blank" rel="noopener noreferrer" class="btn-green">OPEN FREE PDF MATRIX</a>
-    </div>
-    <div class="vault-row">
-        <div class="vault-info">
-            <h3>Volume 4: DRIA Appliances Bill of Materials Infrastructure</h3>
-            <p>Status: COMMERCIAL ACCESS | Verification Framework Code: DRIA-Appliances-BOM</p>
-        </div>
-        <span class="access-note">Commercial access by request</span>
-    </div>
-</div>
+    </section>
+
+    <footer>
+        <p><strong>DRIA Home Builders (Pty) Ltd</strong> · DRIA 4IR Infrastructure Systems</p>
+        <p>Commercial Rights, Licensing &amp; Data Infrastructure Disclosure: DRIA-CRLDN-v1.0.</p>
+        <p>All rights in third-party standards, data, specifications and trademarks remain with their respective owners.</p>
+    </footer>
+</main>
 </body>
 </html>
